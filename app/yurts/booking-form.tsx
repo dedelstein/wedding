@@ -184,6 +184,20 @@ export default function BookingForm({ user, yurt_list }: BookingFormProps) {
 
   return (
     <div>
+      <div>
+        <h2>Your Bookings</h2>
+        <ul>
+          {sortedBookings
+            .filter((booking) => booking.guest_id === guestId) // NEW: Filter bookings by guest_id
+            .map((booking) => (
+              <li key={booking.yurt_id}>
+                {booking.guest_name} booked Yurt {booking.yurt_id} for {booking.duration} night(s).
+                <button onClick={() => handleDeleteBooking(booking.booking_id)}>Delete</button> {/* Updated */}
+              </li>
+            ))}
+        </ul>
+        <br/>
+      </div>
       <h1>Available Yurts</h1>
       <div className={styles.container}>
         <div className={styles.buttons}>
@@ -262,19 +276,6 @@ export default function BookingForm({ user, yurt_list }: BookingFormProps) {
         )}
         <button type="submit" className={styles.submitButton}>Submit</button>
       </form>
-      <div>
-        <h2>Your Bookings</h2>
-        <ul>
-          {sortedBookings
-            .filter((booking) => booking.guest_id === guestId) // NEW: Filter bookings by guest_id
-            .map((booking) => (
-              <li key={booking.yurt_id}>
-                {booking.guest_name} booked Yurt {booking.yurt_id} for {booking.duration} night(s).
-                <button onClick={() => handleDeleteBooking(booking.booking_id)}>Delete</button> {/* Updated */}
-              </li>
-            ))}
-        </ul>
-      </div>
     </div>
   );
 }
