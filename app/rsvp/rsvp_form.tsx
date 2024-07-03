@@ -17,9 +17,16 @@ export default function RSVPForm(user: any) {
         return router.push(redirectPath);
     };
 
+    const handleModifyBooking = () => {
+        router.push('/modify');
+    };
+
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
+        <main className="flex min-h-screen flex-col items-center p-24">
+            <button onClick={handleModifyBooking} className="mb-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Change Yurt Booking
+            </button>
+            <div className="max-w-5xl">
                 <form onSubmit={handleSubmit}>
                     <div>
                         <text>Will you be attending? </text>
