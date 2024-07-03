@@ -3,31 +3,119 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-color: white;
+  --text-color: black;
+  --highlight-color: lightblue;
+  --border-color: #ccc;
+  --dropdown-background: rgb(105, 105, 105);
+  --dropdown-text-color: black;
+  --dropdown-border: #ccc;
+  --popup-background: #fff;
+  --popup-text: #000;
+  --popup-overlay: rgba(0, 0, 0, 0.5);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background-color: #333;
+    --text-color: white;
+    --highlight-color: #005f73;
+    --border-color: #555;
+    --dropdown-background: #1d1b1b;
+    --dropdown-text-color: white;
+    --dropdown-border: #666;
+    --popup-background: #333;
+    --popup-text: #fff;
+    --popup-overlay: rgba(255, 255, 255, 0.5);
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.dark {
+  /* Dark mode styles */
+  background-color: #1a1a1a;
+  color: #080808;
+  
+}
+
+.input {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.25rem; /* 20px */
+  color: #333333;
+  background-color: #ffffff;
+  border-width: 1px;
+  border-color: #d2d6dc;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.plusone-hidden {
+  display: none;
+}
+
+#attending-hidden {
+  display: none;
+}
+
+/* Show fields when "Yes" is selected */
+#attending-yes[value="yes"]:checked ~ #attending-hidden{
+    display: block;
+}
+
+/* Show the input when the checkbox is checked */
+.toggle-plusone:checked ~ .plusone-hidden{
+  display: block;
+}
+
+.alert {
+  padding: 15px;
+  margin-top: 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert-warning {
+  color: #856404;
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--popup-overlay);
+  z-index: 999;
+}
+
+.popup-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--popup-background);
+  color: var(--popup-text);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
