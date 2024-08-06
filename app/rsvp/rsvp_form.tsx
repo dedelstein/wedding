@@ -1,10 +1,26 @@
 'use client';
 
-import { rsvp } from '@/components/actions';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+
+import { rsvp } from '@/components/actions';
+import styles from './RSVPstyle.module.css'
+import { Manrope } from 'next/font/google'
+
+const manrope = Manrope({ subsets: ['latin'] })
 
 export default function RSVPForm(user: any) {
+    const [isAttending, setIsAttending] = useState(false);
+    const [hasPlusOne, setHasPlusOne] = useState(false);
     const router = useRouter();
+
+    const handleAttendingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setIsAttending(e.target.value === 'yes');
+    };
+
+    const handlePlusOneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setHasPlusOne(e.target.checked);
+    };
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -22,49 +38,113 @@ export default function RSVPForm(user: any) {
     };
 
     return (
-        <main className="flex min-h-screen flex-col items-center p-24">
-            <button onClick={handleModifyBooking} className="mb-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Change Yurt Booking
-            </button>
-            <div className="max-w-5xl">
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <text>Will you be attending? </text>
-                        <input type="radio" name="attending" id="attending-yes" value="yes" />
-                        Yes
-                        <input type="radio" name="attending" value="no" />
-                        No
+        <main className={styles.container}>
+            <div className={manrope.className}>
+                <h1 className={styles.title}>RSVP</h1>
 
-
-                        <input type="text" name="name" placeholder="Your Name"
-                            className="block w-full px-3 py-2 mt-1 text-sm placeholder-gray-400 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-600"
-                        />
-                        <input type="email" name="email" placeholder="Your email address"
-                            className="block w-full px-3 py-2 mt-1 text-sm placeholder-gray-400 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-600"
-                        />
-
-                        <div id="attending-hidden">
-                            <input type="text" name="specialRequests" placeholder="Special Requests"
-                                className="block w-full px-3 py-2 mt-1 text-sm placeholder-gray-400 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-600"
-                            />
-                            <input type="text" name="dietaryRestrictions" placeholder="Dietary Restrictions"
-                                className="block w-full px-3 py-2 mt-1 text-sm placeholder-gray-400 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-600"
-                            />
-                            <text>Would you like to request a plus one? </text><input type="checkbox" name="plusOne" className='toggle-plusone' />
-                            <input type="text" name="plusOneName" placeholder="Plus One Name"
-                                className="plusone-hidden block w-full px-3 py-2 mt-1 text-sm placeholder-gray-400 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-600"
-                            />
-                            <input type="email" name="plusOneEmail" placeholder="Plus One Email"
-                                className="plusone-hidden block w-full px-3 py-2 mt-1 text-sm placeholder-gray-400 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-600"
-                            />
+                <form onSubmit={handleSubmit} className={styles.form}>
+                    <div className={styles.formGroup}>
+                        <p className={styles.question}>Will you be attending?</p>
+                        <div className={styles.radioGroup}>
+                            <label className={styles.radioLabel}>
+                                <input
+                                    type="radio"
+                                    name="attending"
+                                    value="yes"
+                                    className={styles.radioInput}
+                                    onChange={handleAttendingChange}
+                                />
+                                <span className={styles.radioButton}></span>
+                                Yes
+                            </label>
+                            <label className={styles.radioLabel}>
+                                <input
+                                    type="radio"
+                                    name="attending"
+                                    value="no"
+                                    className={styles.radioInput}
+                                    onChange={handleAttendingChange}
+                                />
+                                <span className={styles.radioButton}></span>
+                                No
+                            </label>
                         </div>
                     </div>
 
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Your Name"
+                        className={styles.input}
+                    />
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Your Email Address"
+                        className={styles.input}
+                    />
 
-                    <br />
-                    <button type="submit">RSVP</button>
+                    {isAttending && (
+                        <div className={styles.attendingSection}>
+                            <input
+                                type="text"
+                                name="specialRequests"
+                                placeholder="Special Requests"
+                                className={styles.input}
+                            />
+                            <input
+                                type="text"
+                                name="dietaryRestrictions"
+                                placeholder="Dietary Restrictions"
+                                className={styles.input}
+                            />
+                            <div className={styles.checkboxGroup}>
+                                <label className={styles.checkboxLabel}>
+                                    <input
+                                        type="checkbox"
+                                        name="plusOne"
+                                        className={styles.checkboxInput}
+                                        onChange={handlePlusOneChange}
+                                    />
+                                    <span className={`${styles.checkbox} ${hasPlusOne ? styles.checkboxChecked : ''}`}></span>
+                                    Request a plus one
+                                </label>
+                            </div>
+                            <p className={styles.plusOneDisclaimer}>
+                                Due to venue capacity constraints, while we will make every effort to accommodate +1's,
+                                we may not be able to guarantee space for all +1's.<br />We will notify you ASAP if your guest can come<br />
+                                If your invitation was addressed to two people,
+                                please be assured that we have space for both of you.
+                            </p>
+                            {hasPlusOne && (
+                                <div className={styles.plusOneSection}>
+                                    <input
+                                        type="text"
+                                        name="plusOneName"
+                                        placeholder="Plus One Name"
+                                        className={styles.input}
+                                    />
+                                    <input
+                                        type="email"
+                                        name="plusOneEmail"
+                                        placeholder="Plus One Email"
+                                        className={styles.input}
+                                    />
+                                </div>
+                            )}
+                        </div>
+                    )}
+
+                    <button type="submit" className={styles.button}>RSVP</button>
                 </form>
-            </div >
-        </main >
+
+                <button
+                    onClick={handleModifyBooking}
+                    className={`${styles.button} ${styles.secondaryButton}`}
+                >
+                    Change Yurt Booking
+                </button>
+            </div>
+        </main>
     );
 }

@@ -56,6 +56,19 @@ export default function Home() {
         }}
         aria-label='Schedule'
         />
+        <Link href={'/stay'}
+        style={{
+          position: 'absolute',
+          top: '64%',
+          left: '29%',
+          width: '43%', // Set the width to match the area you want to cover
+          height: '5%', // Set the height to match the area you want to cover
+          background: 'transparent', // Make the button invisible
+          border: 'none',
+          cursor: 'pointer',
+        }}
+        aria-label='Accommodations'
+        />
       </div>
     </main>
   );

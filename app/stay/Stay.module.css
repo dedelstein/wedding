@@ -1,0 +1,92 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.title {
+  color: #333;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.coordinates {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.imageWrapper {
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  color: #444;
+  font-size: 1.8rem;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.list {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+.list li {
+  margin-bottom: 10px;
+}
+
+.paragraph {
+  margin-bottom: 30px;
+}
+
+.link {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.externalMap {
+  margin-top: 30px;
+}
+
+.button {
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+  max-width: 300px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.button:hover {
+  background-color: #0051a8;
+}
+
+.secondaryButton {
+  background-color: transparent;
+  color: #0070f3;
+  border: 1px solid #0070f3;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 300px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.secondaryButton:hover {
+  background-color: #e6f0ff;
+}

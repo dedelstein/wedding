@@ -44,7 +44,7 @@ export async function rsvp(formData: FormData) {
   const insertedId = data[0]?.id;
   let redirectPath = '/';
   if (datum.attending) {
-    redirectPath = '/yurts';
+    redirectPath = '/stay';
   }
 
   return { insertedId, redirectPath };

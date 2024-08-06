@@ -12,16 +12,7 @@ export default async function Bookings() {
         console.error('Error fetching yurts:', yurtError);
         return <div>Error fetching yurts.</div>;
     }
-/*
-    const { data: guest_list, error: guestError } = await supabase
-    .from('guests')
-    .select('*');
 
-    if (guestError) {
-        console.error('Error fetching guests:', guestError);
-        return <div>Error fetching guests.</div>;
-    }
-*/
     const {
         data: { user },
     } = await supabase.auth.getUser()
