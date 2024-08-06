@@ -1,31 +1,61 @@
+import Image from 'next/image';
+import Link from 'next/link'
+
 import { login } from '@/components/actions'
+import wedding_landing from '@/public/wedding_landing_sm.jpg'
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <form>
-          <button formAction={login}>Click Me to Enter</button>
-        </form>
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+    <div className="z-10 w-full max-w-2xl items-center justify-between font-mono text-sm lg:flex relative">
+      <form>
+        <Image
+          src={wedding_landing}
+          layout="responsive"
+          alt="Wedding Landing Image"
+          width={1509}
+          height={2523}
+        />
+        <button
+          formAction={login}
+          style={{
+            position: 'absolute',
+            top: '46%',
+            left: '43%',
+            width: '15%', // Set the width to match the area you want to cover
+            height: '5%', // Set the height to match the area you want to cover
+            background: 'transparent', // Make the button invisible
+            border: 'none',
+            cursor: 'pointer',
+          }}
+          aria-label='RSVP'
+        />          
+      </form>
+      <Link href={'/directions'}
+        style={{
+          position: 'absolute',
+          top: '52%',
+          left: '35%',
+          width: '31%', // Set the width to match the area you want to cover
+          height: '5%', // Set the height to match the area you want to cover
+          background: 'transparent', // Make the button invisible
+          border: 'none',
+          cursor: 'pointer',
+        }}
+        aria-label='Directions'/>
+      <Link href={'/schedule'}
+        style={{
+          position: 'absolute',
+          top: '58%',
+          left: '37%',
+          width: '28%', // Set the width to match the area you want to cover
+          height: '5%', // Set the height to match the area you want to cover
+          background: 'transparent', // Make the button invisible
+          border: 'none',
+          cursor: 'pointer',
+        }}
+        aria-label='Schedule'
+        />
       </div>
     </main>
   );
