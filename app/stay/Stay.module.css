@@ -11,31 +11,11 @@
   margin-bottom: 20px;
 }
 
-.coordinates {
-  font-size: 1.2rem;
-  color: #666;
-  margin-bottom: 20px;
-}
-
-.imageWrapper {
-  margin-bottom: 20px;
-}
-
 .subtitle {
   color: #444;
   font-size: 1.8rem;
   margin-top: 30px;
   margin-bottom: 15px;
-}
-
-.list {
-  list-style-type: none;
-  padding: 0;
-  margin-bottom: 30px;
-}
-
-.list li {
-  margin-bottom: 10px;
 }
 
 .paragraph {
@@ -51,10 +31,6 @@
   text-decoration: underline;
 }
 
-.externalMap {
-  margin-top: 30px;
-}
-
 .button {
   background-color: #70868A;
   color: white;
@@ -67,8 +43,8 @@
   width: 100%;
   max-width: 300px;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
+  margin-right: calc(40% - 170px);
 }
 
 .button:hover {
@@ -79,14 +55,53 @@
   background-color: transparent;
   color: #7C947F;
   border: 1px solid #4E6652;
-  margin-top: 20px;
+  margin: 20px calc(40% - 170px) 50px auto;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
   width: 100%;
   max-width: 300px;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+
 }
 
 .secondaryButton:hover {
   background-color: #e6f0ff;
+}
+
+.section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.sectionReverse {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  flex-direction: row-reverse;
+}
+
+.sectionImage {
+  flex: 0 0 auto;
+  margin-right: 20px;
+}
+
+.sectionContent {
+  flex: 1 1 auto;
+  text-align: left;
+  margin-top: 1.5em;
+}
+
+.sectionReverse .sectionImage {
+  margin-right: 0;
+  margin-left: 20px;
+}
+
+.sectionReverse .sectionContent {
+  margin-top: 2em;
 }
