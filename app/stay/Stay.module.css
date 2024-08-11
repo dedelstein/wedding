@@ -43,7 +43,7 @@
 }
 
 .link {
-  color: #0070f3;
+  color: #6C8FA6;
   text-decoration: none;
 }
 
@@ -56,7 +56,7 @@
 }
 
 .button {
-  background-color: #0070f3;
+  background-color: #70868A;
   color: white;
   border: none;
   padding: 12px 24px;
@@ -72,13 +72,13 @@
 }
 
 .button:hover {
-  background-color: #0051a8;
+  background-color: #81A0AA;
 }
 
 .secondaryButton {
   background-color: transparent;
-  color: #0070f3;
-  border: 1px solid #0070f3;
+  color: #7C947F;
+  border: 1px solid #4E6652;
   margin-top: 20px;
   width: 100%;
   max-width: 300px;

@@ -23,20 +23,23 @@ export default function Schedule() {
                     around a campfire or on a grill.</p>
                 <br />
                 <p>There are Yurts on the property that you can stay in with
-                    some advance notice, and you are also welcome to camp in your own tent or vehicle -- details for
-                    accomodation can be found HERE.</p>
+                    some advance notice, and you are also welcome to camp in your own tent or vehicle  
+                    -- <Link href={'/stay'} className={styles.link}>
+                    details for accomodation can be found here
+                    </Link>
+                    </p>
                 <br />
                 <h2 className={styles.subtitle}>Saturday Schedule, Oct. 5th</h2>
                 <ul className={styles.list}>
                     <li> 11 AM - Breakfast @ Mt. Lakes </li>
                     <li> 4 PM - Please get here by 4! </li>
                     <li> <b>4:30 PM - Ceremony</b> </li>
-                    <li> 6 - 11 PM - Reception </li>
+                    <li> 6 - 11 PM - Reception -- Music, Food, Etc.</li>
                 </ul>
                 <br />
                 <p>On Sunday Morning, we will be getting breakfast at ::LOCATION TBD::, please join us if you are able</p>
                 <br />
-                <Link href={'/'}>Back</Link>
+                <Link href={'/'} className={styles.link}>Back</Link>
             </div>
         </div>
     )

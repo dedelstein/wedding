@@ -54,7 +54,7 @@
   .checkbox {
     width: 20px;
     height: 20px;
-    border: 2px solid #0070f3;
+    border: 2px solid #829EA7;
     margin-right: 8px;
     position: relative;
     transition: all 0.3s ease;
@@ -87,7 +87,7 @@
   
   .radioInput:checked + .radioButton,
   .checkboxInput:checked + .checkbox {
-    background-color: #0070f3;
+    background-color: #829EA7;
   }
   
   .radioInput:checked + .radioButton::after,
@@ -97,12 +97,12 @@
   
   .radioButton:hover,
   .checkbox:hover {
-    background-color: rgba(0, 112, 243, 0.1);
+    background-color: #8AA9B3;
   }
   
   .radioInput:checked + .radioButton:hover,
   .checkboxInput:checked + .checkbox:hover {
-    background-color: #005ac1;
+    background-color: #627C85;
   }
   
   .input {
@@ -116,11 +116,11 @@
   
   .input:focus {
     outline: none;
-    border-color: #0070f3;
+    border-color: #394F62;
   }
   
   .button {
-    background-color: #0070f3;
+    background-color: #394F62;
     color: white;
     border: none;
     padding: 12px 24px;
@@ -131,13 +131,13 @@
   }
   
   .button:hover {
-    background-color: #0051a8;
+    background-color: #4D6974;
   }
   
   .secondaryButton {
     background-color: transparent;
-    color: #0070f3;
-    border: 1px solid #0070f3;
+    color: #7C947F;
+    border: 1px solid #4E6652;
     margin-top: 20px;
   }
   

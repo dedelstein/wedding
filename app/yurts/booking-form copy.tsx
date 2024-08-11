@@ -3,8 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { booking, deleteBooking } from '@/components/actions';
 import { useRouter } from 'next/navigation';
-
-import styles from './Yurts.module.css';
+import styles from './yurts.module.css';
 import { getSortedBookingsWithGuestNames } from './sorted';
 
 interface BookingWithGuestName {
@@ -183,88 +182,88 @@ export default function BookingForm({ user, yurt_list }: BookingFormProps) {
       .join(', ');
   };
 
-  
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Yurt Booking</h1>
-
-      {sortedBookings.filter((booking) => booking.guest_id === guestId).length > 0 && (
-        <div>
-          
-          <h2 className={styles.subtitle}>Your Bookings: </h2>
-          <ul className={styles.list}>
-            {sortedBookings
-              .filter((booking) => booking.guest_id === guestId)
-              .map((booking) => (
-                <li key={booking.yurt_id}>
-                  {booking.guest_name} booked Yurt {booking.yurt_id} for {booking.duration} night(s).
-                  <button className={styles.button} onClick={() => handleDeleteBooking(booking.booking_id)}>Delete</button>
-                </li>
-              ))}
-          </ul>
-        </div>
-      )}
-
-      <h2 className={styles.subtitle}>Available Yurts</h2>
+    <div>
       <div>
-        <button
-          onClick={() => handleDurationClick(1)}
-          className={`${styles.button} ${stayDuration === 1 ? styles.buttonSelected : ''}`}
-          style={{ backgroundColor: stayDuration === 1 ? '#953D38' : '#81A0AA' }}
-        >One Night</button>
-        <button
-          onClick={() => handleDurationClick(2)}
-          className={`${styles.button} ${stayDuration === 2 ? styles.buttonSelected : ''}`}
-          style={{ backgroundColor: stayDuration === 2 ? '#953D38' : '#81A0AA' }}
-        >Two Nights</button>
-        <select value={selectedPeople} onChange={handlePeopleChange} className={styles.dropdown}>
-          <option value={1}>1 Person</option>
-          <option value={2}>2 People</option>
-        </select>
+        <h2>Your Bookings</h2>
+        <ul>
+          {sortedBookings
+            .filter((booking) => booking.guest_id === guestId) // NEW: Filter bookings by guest_id
+            .map((booking) => (
+              <li key={booking.yurt_id}>
+                {booking.guest_name} booked Yurt {booking.yurt_id} for {booking.duration} night(s).
+                <button onClick={() => handleDeleteBooking(booking.booking_id)}>Delete</button> {/* Updated */}
+              </li>
+            ))}
+        </ul>
+        <br/>
       </div>
-
-      <div className={styles.yurtsContainer}>
-        <div className={styles.column}>
-          <h3 className={styles.subtitle}>Friday</h3>
-          {sortedYurtList.slice(0, 10).map((yurt, index) => (
-            <div
-              key={yurt.id}
-              onClick={() => handleYurtClick(index, 4)}
-              className={`${styles.yurt} ${(stayDuration === 1 && selectedColumn === 4 && selectedYurtIndex === index) ||
-                (stayDuration === 2 && selectedYurtIndex === index)
-                ? styles.yurtSelected
-                : ''
-                }`}
-            >
-              <h4>{yurt.name}</h4>
-              <p>Number Using: {yurt.num_using_fri}</p>
-              <div>Guests: {getGuestNamesForYurt(yurt.id, 4)}</div>
-            </div>
-          ))}
+      <h1>Available Yurts</h1>
+      <div className={styles.container}>
+        <div className={styles.buttons}>
+          <button
+            onClick={() => handleDurationClick(1)}
+            className={styles.button}
+          >
+            One Night
+          </button>
+          <button
+            onClick={() => handleDurationClick(2)}
+            className={styles.button}
+          >
+            Two Nights
+          </button>
+          <select value={selectedPeople} onChange={handlePeopleChange} className={styles.dropdown}>
+            <option value={1}>1 Person</option>
+            <option value={2}>2 People</option>
+          </select>
         </div>
-        <div className={styles.column}>
-          <h3 className={styles.subtitle}>Saturday</h3>
-          {sortedYurtList.slice(0, 10).map((yurt, index) => (
-            <div
-              key={yurt.id}
-              onClick={() => handleYurtClick(index, 5)}
-              className={`${styles.yurt} ${(stayDuration === 1 && selectedColumn === 5 && selectedYurtIndex === index) ||
-                (stayDuration === 2 && selectedYurtIndex === index)
-                ? styles.yurtSelected
-                : ''
-                }`}
-            >
-              <h4>{yurt.name}</h4>
-              <p>Number Using: {yurt.num_using_sat}</p>
-              <div>Guests: {getGuestNamesForYurt(yurt.id, 5)}</div>
-            </div>
-          ))}
+        <div className={styles.columns}>
+          <div className={styles.column}>
+            <h2>Friday</h2>
+            {sortedYurtList.slice(0, 10).map((yurt, index) => (
+              <div
+                key={yurt.id}
+                onClick={() => handleYurtClick(index, 4)}
+                className={`${styles.yurt} ${(stayDuration === 1 && selectedColumn === 4 && selectedYurtIndex === index) ||
+                  (stayDuration === 2 && selectedYurtIndex === index)
+                  ? styles.yurtSelected
+                  : ''
+                  }`}
+              >
+                <h3>{yurt.name}</h3>
+                <p>Number Using: {yurt.num_using_fri}</p>
+                <div className={styles.hoverInfo}>
+                  Guests: {getGuestNamesForYurt(yurt.id, 4)}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className={styles.column}>
+            <h2>Saturday</h2>
+            {sortedYurtList.slice(0, 10).map((yurt, index) => (
+              <div
+                key={yurt.id}
+                onClick={() => handleYurtClick(index, 5)}
+                className={`${styles.yurt} ${(stayDuration === 1 && selectedColumn === 5 && selectedYurtIndex === index) ||
+                  (stayDuration === 2 && selectedYurtIndex === index)
+                  ? styles.yurtSelected
+                  : ''
+                  }`}
+              >
+                <h3>{yurt.name}</h3>
+                <p>Number Using: {yurt.num_using_sat}</p>
+                <div className={styles.hoverInfo}>
+                  Guests: {getGuestNamesForYurt(yurt.id, 5)}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-
       {showPopup && (
-        <div className={styles.popup}>
-          <div className={styles.popupContent}>
+        <div className="popup-overlay" onClick={closePopup}>
+          <div className="popup-content" onClick={(e) => e.stopPropagation()}>
             <button onClick={closePopup}>Please select a duration</button>
           </div>
         </div>
@@ -272,12 +271,8 @@ export default function BookingForm({ user, yurt_list }: BookingFormProps) {
 
       <form onSubmit={handleSubmit}>
         {selectedPeople === 2 && (
-          <input
-            type="text"
-            name="extra_names"
-            placeholder="Extra Name"
-            className={styles.inputField}
-          />
+          <input type="text" name="extra_names" placeholder="Extra Name"
+            className="block w-full px-3 py-2 mt-1 text-sm placeholder-gray-400 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-600" />
         )}
         <button type="submit" className={styles.submitButton}>Submit</button>
       </form>
