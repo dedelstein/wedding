@@ -32,7 +32,7 @@ export default function Stay() {
 
   const handlePopupConfirm = () => {
     setIsPopupOpen(false);
-    router.push('/rsvp');
+    router.push('/');
   };
 
   const handleModifyBooking = () => {
