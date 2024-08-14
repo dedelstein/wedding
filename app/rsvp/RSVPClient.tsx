@@ -40,7 +40,6 @@ export default function RSVPClient() {
 
   return (
     <main className={styles.container}>
-      <h1 className={styles.title}>RSVP</h1>
       {isAuthenticated ? (
         <RSVPForm />
       ) : (
