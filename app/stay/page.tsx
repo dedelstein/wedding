@@ -88,7 +88,7 @@ export default function Stay() {
           </div>
           <div className={styles.sectionContent}>
             <p className={styles.paragraph}>
-              We've arranged discounted rates at a nearby hotel for those who prefer it. You can just call up This Number: and tell them ______. They are a ~15 min drive away, but we won't be able get you to/from the venue. We will set up a groupchat for carpooling.
+              We've arranged discounted rates at a <a href='https://www.choicehotels.com/new-york/brewster/comfort-inn-hotels/ny764' className={styles.link}>nearby hotel</a> for those who prefer it. You can just call up +1 (845) 582-0688 and tell them you're getting a room for Dan and Zody's wedding. They are a ~15 min drive away, but we won't be able get you to/from the venue. We will set up a groupchat for carpooling.
             </p>
           </div>
         </div>
