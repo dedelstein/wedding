@@ -1,15 +1,42 @@
-import RSVPForm from './rsvp_form'
-import { createClient } from '@/utils/supabase/server'
-import { Manrope } from 'next/font/google'
+'use client';
 
-const manrope = Manrope({ subsets: ['latin']})
+import { useState, useEffect } from 'react';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { Session } from '@supabase/supabase-js';
+import RSVPForm from './rsvp_form';
+import styles from './RSVPstyle.module.css';
 
-export default async function RSVP() {
-    const supabase = createClient()
+type RSVPClientProps = {
+  initialSession: Session | null;
+};
 
-    const {
-        data: { user },
-    } = await supabase.auth.getUser()
+export default function RSVPClient({ initialSession }: RSVPClientProps) {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(!!initialSession);
+  const supabase = createClientComponentClient();
 
-    return <RSVPForm user={user} />
+  useEffect(() => {
+    const authenticateAnonymously = async () => {
+      if (!isAuthenticated) {
+        try {
+          const { error } = await supabase.auth.signInAnonymously();
+          if (error) throw error;
+          setIsAuthenticated(true);
+        } catch (error) {
+          console.error('Anonymous authentication failed:', error);
+        }
+      }
+    };
+
+    authenticateAnonymously();
+  }, [isAuthenticated, supabase.auth]);
+
+  return (
+    <main className={styles.container}>
+      {isAuthenticated ? (
+        <RSVPForm />
+      ) : (
+        <p>Preparing your RSVP form...</p>
+      )}
+    </main>
+  );
 }
