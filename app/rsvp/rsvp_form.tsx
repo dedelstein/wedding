@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import Link from 'next/link'
 
 import { rsvp } from '@/components/actions';
 import styles from './RSVPstyle.module.css'
@@ -39,7 +40,14 @@ export default function RSVPForm(user: any) {
 
     return (
         <main className={styles.container}>
-            <div className={manrope.className}>
+            <Link href={'/'} className={styles.link}>
+                <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.87224 1.44373L1.69141 7.62471L7.87224 13.8055" stroke="white" stroke-width="2"/>
+                </svg>
+                Back
+            </Link>
+
+            <div className={`${manrope.className} ${styles.formContainer}`}>
                 <h1 className={styles.title}>RSVP</h1>
 
                 <form onSubmit={handleSubmit} className={styles.form}>

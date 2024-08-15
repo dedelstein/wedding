@@ -1,34 +1,72 @@
 .container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 40px 20px;
   text-align: center;
 }
 
 .title {
-  color: #333;
+  color: white;
   font-size: 2.5rem;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .subtitle {
-  color: #444;
+  position: relative;
+  color: white;
   font-size: 1.8rem;
-  margin-top: 30px;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
 }
 
-.paragraph {
-  margin-bottom: 30px;
+.subtitle::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 50px;
+  background-color: white;
+  opacity: 0.15;
+}
+
+.topParagraph {
+  margin-bottom: 60px;
 }
 
 .link {
-  color: #6C8FA6;
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 8px 20px 10px;
+  border: 1px solid white;
+  border-radius: 30px;
+  color: white;
   text-decoration: none;
+  transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out;
+}
+
+.link svg {
+  display: initial;
+  margin-top: -1px;
+  margin-right: 15px;
+}
+
+.link svg path {
+  transition: stroke 0.25s ease-in-out;
 }
 
 .link:hover {
-  text-decoration: underline;
+  background-color: white;
+  color: black;
+}
+
+.link:hover svg path {
+  stroke: black;
+}
+
+.buttonRow {
+  margin-bottom: 80px;
 }
 
 .button {
@@ -37,14 +75,14 @@
   border: none;
   padding: 12px 24px;
   font-size: 1rem;
-  border-radius: 4px;
+  border-radius: 100px;
   cursor: pointer;
   transition: background-color 0.3s;
   width: 100%;
   max-width: 300px;
-  display: block;
+  display: inline-block;
   margin: 0 auto;
-  margin-right: calc(40% - 170px);
+  margin-right: 15px;
 }
 
 .button:hover {
@@ -53,18 +91,16 @@
 
 .secondaryButton {
   background-color: transparent;
-  color: #7C947F;
-  border: 1px solid #4E6652;
-  margin: 20px calc(40% - 170px) 50px auto;
+  color: #81A0AA;
+  border: 2px solid #81A0AA;
   padding: 12px 24px;
   font-size: 1rem;
-  border-radius: 4px;
+  border-radius: 100px;
   cursor: pointer;
   transition: background-color 0.3s;
   width: 100%;
   max-width: 300px;
-  display: block;
-
+  display: inline-block;
 }
 
 .secondaryButton:hover {
@@ -75,7 +111,11 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: 80px;
+}
+
+.first {
+  margin-bottom: 30px;
 }
 
 .sectionReverse {
@@ -87,12 +127,32 @@
 }
 
 .sectionImage {
+  position: relative;
   flex: 0 0 auto;
-  margin-right: 20px;
+  margin-right: 30px;
+}
+
+.sectionImage::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: calc(100% + 15px);
+  width: calc(100% + 15px);
+  border: 1px solid white;
+  border-radius: 6px;
+  background-color: white;
+  transform: translate(-50%, -50%) rotate(5deg);
+  opacity: 0.08;
+  z-index: -1;
+}
+
+.sectionImage img {
+  border-radius: 6px;
 }
 
 .sectionContent {
   flex: 1 1 auto;
   text-align: left;
-  margin-top: 1.5em;
 }

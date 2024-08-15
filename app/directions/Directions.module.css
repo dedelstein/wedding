@@ -1,56 +1,116 @@
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .title {
-    color: #333;
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-  }
-  
-  .coordinates {
-    font-size: 1.2rem;
-    color: #666;
-    margin-bottom: 20px;
-  }
-  
-  .imageWrapper {
-    margin-bottom: 20px;
-  }
-  
-  .subtitle {
-    color: #444;
-    font-size: 1.8rem;
-    margin-top: 30px;
-    margin-bottom: 15px;
-  }
-  
-  .list {
-    list-style-type: none;
-    padding: 0;
-    margin-bottom: 30px;
-  }
-  
-  .list li {
-    margin-bottom: 10px;
-  }
-  
-  .paragraph {
-    margin-bottom: 30px;
-  }
-  
-  .link {
-    color: #C4694F;
-    text-decoration: none;
-  }
-  
-  .link:hover {
-    text-decoration: underline;
-  }
-  
-  .externalMap {
-    margin-top: 30px;
-  }
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.title {
+  color: white;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.coordinates {
+  font-size: 1.2rem;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.imageWrapper {
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  position: relative;
+  color: white;
+  font-size: 1.8rem;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+}
+
+.subtitle::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  height: 2px;
+  width: 50px;
+  background-color: white;
+  opacity: 0.15;
+  transform: translateX(-50%);
+}
+
+.list {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+.list li {
+  margin-bottom: 10px;
+}
+
+.paragraph {
+  margin-bottom: 30px;
+}
+
+.link {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 8px 20px 10px;
+  border: 1px solid white;
+  border-radius: 30px;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out;
+}
+
+.link svg {
+  display: initial;
+  margin-top: -1px;
+  margin-right: 15px;
+}
+
+.link svg path {
+  transition: stroke 0.25s ease-in-out;
+}
+
+.link:hover {
+  background-color: white;
+  color: black;
+}
+
+.link:hover svg path {
+  stroke: black;
+}
+
+.textLink {
+  position: relative;
+  color: #C4694F;
+}
+
+.textLink::before {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: -4px;
+  left: 0;
+  height: 1px;
+  background-color: white;
+}
+
+.textLink:hover::before {
+  content: none;
+}
+
+.image {
+  margin-top: 40px;
+}
+
+.externalMap {
+  margin-top: 30px;
+}

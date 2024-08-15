@@ -48,7 +48,11 @@ body {
   /* Dark mode styles */
   background-color: #1a1a1a;
   color: #080808;
-  
+}
+
+.front-img a:hover,
+.front-img button:hover {
+  border-bottom: 1px solid #d2d6dc !important;
 }
 
 .input {
