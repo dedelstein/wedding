@@ -223,6 +223,18 @@ export default function BookingForm({ user, yurt_list }: BookingFormProps) {
         </select>
       </div>
 
+      <form onSubmit={handleSubmit}>
+        {selectedPeople === 2 && (
+          <input
+            type="text"
+            name="extra_names"
+            placeholder="Extra Name"
+            className={styles.inputField}
+          />
+        )}
+        <button type="submit" className={styles.submitButton}>Submit</button>
+      </form>
+
       <div className={styles.yurtsContainer}>
         <div className={styles.column}>
           <h3 className={styles.subtitle}>Friday</h3>
@@ -269,18 +281,6 @@ export default function BookingForm({ user, yurt_list }: BookingFormProps) {
           </div>
         </div>
       )}
-
-      <form onSubmit={handleSubmit}>
-        {selectedPeople === 2 && (
-          <input
-            type="text"
-            name="extra_names"
-            placeholder="Extra Name"
-            className={styles.inputField}
-          />
-        )}
-        <button type="submit" className={styles.submitButton}>Submit</button>
-      </form>
     </div>
   );
 }

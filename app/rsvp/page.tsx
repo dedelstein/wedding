@@ -1,15 +1,5 @@
-import RSVPForm from './rsvp_form'
-import { createClient } from '@/utils/supabase/server'
-import { Manrope } from 'next/font/google'
+import RSVPClient from './RSVPClient';
 
-const manrope = Manrope({ subsets: ['latin']})
-
-export default async function RSVP() {
-    const supabase = createClient()
-
-    const {
-        data: { user },
-    } = await supabase.auth.getUser()
-
-    return <RSVPForm user={user} />
+export default function RSVPPage() {
+  return <RSVPClient />;
 }

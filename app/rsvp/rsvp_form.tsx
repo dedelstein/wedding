@@ -34,10 +34,6 @@ export default function RSVPForm(user: any) {
         return router.push(redirectPath);
     };
 
-    const handleModifyBooking = () => {
-        router.push('/modify');
-    };
-
     return (
         <main className={styles.container}>
             <Link href={'/'} className={styles.link}>
@@ -145,13 +141,6 @@ export default function RSVPForm(user: any) {
 
                     <button type="submit" className={styles.button}>RSVP</button>
                 </form>
-
-                <button
-                    onClick={handleModifyBooking}
-                    className={`${styles.button} ${styles.secondaryButton}`}
-                >
-                    Change Yurt Booking
-                </button>
             </div>
         </main>
     );
