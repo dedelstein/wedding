@@ -1,0 +1,87 @@
+.mainContainer {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6rem;
+    background-color: white;
+  }
+  
+  .contentContainer {
+    z-index: 10;
+    width: 100%;
+    max-width: 42rem;
+    font-family: monospace;
+    font-size: 0.875rem;
+    position: relative;
+  }
+  
+  .imageContainer {
+    position: relative;
+    width: 100%;
+  }
+  
+  .button {
+    position: absolute;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .rsvpButton {
+    composes: button;
+    top: 46%;
+    left: 43%;
+    width: 15%;
+    height: 5%;
+  }
+  
+  .directionsButton {
+    composes: button;
+    top: 52%;
+    left: 35%;
+    width: 31%;
+    height: 5%;
+  }
+  
+  .scheduleButton {
+    composes: button;
+    top: 58%;
+    left: 37%;
+    width: 28%;
+    height: 5%;
+  }
+  
+  .stayButton {
+    composes: button;
+    top: 64%;
+    left: 29%;
+    width: 43%;
+    height: 5%;
+  }
+  
+  .loadingSpinner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .spinnerIcon {
+    animation: spin 1s linear infinite;
+    border-radius: 9999px;
+    height: 1.5rem;
+    width: 1.5rem;
+    border-bottom: 2px solid white;
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
