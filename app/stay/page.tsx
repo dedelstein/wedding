@@ -32,7 +32,7 @@ export default function Stay() {
 
   const handlePopupConfirm = () => {
     setIsPopupOpen(false);
-    router.push('/rsvp');
+    router.push('/');
   };
 
   const handleModifyBooking = () => {
@@ -88,7 +88,7 @@ export default function Stay() {
           </div>
           <div className={styles.sectionContent}>
             <p className={styles.paragraph}>
-              We've arranged discounted rates at a <a href='https://www.choicehotels.com/new-york/brewster/comfort-inn-hotels/ny764' className={styles.link}>nearby hotel</a> for those who prefer it. You can just call up +1 (845) 582-0688 and tell them you're getting a room for Dan and Zody's wedding. They are a ~15 min drive away, but we won't be able get you to/from the venue. We will set up a groupchat for carpooling.
+              We've arranged discounted rates at a <a href='https://www.wyndhamhotels.com/days-inn/ridgefield-connecticut/days-inn-ridgefield/rooms-rates?hotel_id=15399&checkin_date=10/04/2024&checkout_date=10/06/2024&adults=2&children=0&rooms=1&brand_id=DI&iata=00094113&cid=ME:xd7zjkwytcqqzs6:15399' className={styles.link}>nearby hotel</a> for those who prefer it. You can just call up +1 (203) 438-3781 and tell them you're getting a room for Dan and Zody's wedding. They are a ~15 min drive away, but we won't be able get you to/from the venue. We will set up a groupchat for carpooling.
             </p>
           </div>
         </div>
