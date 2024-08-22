@@ -76,7 +76,7 @@
 
   .imageContainer {
     height: 100%;
-    width: 95%; /* Slightly narrower than 100% */
+    width: 95%;
   }
 
   .imageContainer > span {
@@ -89,5 +89,24 @@
     position: relative !important;
     height: 100% !important;
     max-height: 100vh;
+  }
+
+  /* Adjusted button styles for mobile */
+  .directionsButton,
+  .scheduleButton,
+  .stayButton {
+    height: 3.5%; /* Reduced height */
+  }
+
+  .directionsButton {
+    top: 52%; /* Moved up */
+  }
+
+  .scheduleButton {
+    top: 57%; /* Moved up */
+  }
+
+  .stayButton {
+    top: 62%; /* Moved up */
   }
 }
