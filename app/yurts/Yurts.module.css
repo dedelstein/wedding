@@ -102,3 +102,50 @@
 .buttonSelected:hover {
   background-color: #218838;
 }
+
+/* Mobile optimizations */
+@media (max-width: 480px) {
+  .container {
+    padding: 15px;
+    width: 100%;
+    max-width: none;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+  }
+
+  .button,
+  .submitButton {
+    font-size: 1rem;
+    padding: 12px;
+    margin: 10px auto;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .yurtsContainer {
+    flex-direction: column;
+  }
+
+  .column {
+    margin: 0;
+  }
+
+  .yurt {
+    margin-bottom: 15px;
+  }
+
+  .dropdown {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .inputField {
+    margin: 10px 0;
+  }
+}
