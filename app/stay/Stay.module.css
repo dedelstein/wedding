@@ -1,7 +1,7 @@
 .container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 20px 15px;
   text-align: center;
   background-color: #ffffff;
   color: #333333;
@@ -10,46 +10,38 @@
 .title {
   color: #333333;
   font-size: 2.5rem;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .subtitle {
   position: relative;
   color: #444444;
   font-size: 1.8rem;
-  margin-bottom: 30px;
-  padding-bottom: 15px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .subtitle::after {
   content: "";
   display: block;
   position: absolute;
-  left: 0;
+  left: 50%;
   bottom: 0;
   height: 2px;
   width: 50px;
+  transform: translateX(-50%);
 }
 
 .topParagraph {
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 
 .paragraph {
-  margin-bottom: 30px;
-}
-
-.link {
-  color: #6C8FA6;
-  text-decoration: none;
-}
-
-.link:hover {
-  text-decoration: underline;
+  margin-bottom: 20px;
 }
 
 .buttonRow {
-  margin-bottom: 80px;
+  margin-bottom: 60px;
 }
 
 .button {
@@ -94,11 +86,11 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 80px;
+  margin-bottom: 40px;
 }
 
 .first {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .sectionReverse {
@@ -112,7 +104,7 @@
 .sectionImage {
   position: relative;
   flex: 0 0 auto;
-  margin-right: 30px;
+  margin-right: 20px;
 }
 
 .sectionImage::before {
@@ -131,10 +123,6 @@
   z-index: -1;
 }
 
-.sectionImage img {
-  border-radius: 6px;
-}
-
 .sectionContent {
   flex: 1 1 auto;
   text-align: left;
@@ -142,24 +130,40 @@
 
 @media (max-width: 480px) {
   .container {
-    padding: 15px;
+    padding: 10px 5px;
     width: 100%;
     max-width: none;
   }
 
   .title {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    margin-bottom: 2px;
   }
 
   .subtitle {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+  }
+
+  .topParagraph {
+    margin-bottom: 20px;
+  }
+
+  .paragraph {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+  }
+
+  .buttonRow {
+    margin-bottom: 30px;
   }
 
   .button,
   .secondaryButton {
-    font-size: 1rem;
-    padding: 12px;
-    margin: 10px auto;
+    font-size: 0.9rem;
+    padding: 10px;
+    margin: 5px auto;
     max-width: 100%;
   }
 
@@ -167,15 +171,26 @@
   .sectionReverse {
     flex-direction: column;
     align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .first {
+    margin-bottom: 10px;
   }
 
   .sectionImage {
     margin-right: 0;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
+    max-width: 80%;
+  }
+
+  .sectionImage::before {
+    height: calc(100% + 10px);
+    width: calc(100% + 10px);
   }
 
   .sectionContent {
     text-align: center;
-    margin-top: 1em;
+    margin-top: 0.3em;
   }
 }

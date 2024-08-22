@@ -16,8 +16,8 @@
 .subtitle {
   color: #546C59;
   font-size: 1.8rem;
-  margin-top: 30px;
   margin-bottom: 15px;
+  font-weight: bold;
 }
 
 .list {

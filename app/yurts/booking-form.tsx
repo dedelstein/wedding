@@ -205,7 +205,6 @@ export default function BookingForm({ user, yurt_list }: BookingFormProps) {
         </div>
       )}
 
-      <h2 className={styles.subtitle}>Available Yurts</h2>
       <div>
         <button
           onClick={() => handleDurationClick(1)}
