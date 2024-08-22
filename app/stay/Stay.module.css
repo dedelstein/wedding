@@ -64,7 +64,6 @@
   width: 100%;
   max-width: 300px;
   display: block;
-
 }
 
 .secondaryButton:hover {
@@ -95,4 +94,44 @@
   flex: 1 1 auto;
   text-align: left;
   margin-top: 1.5em;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 15px;
+    width: 100%;
+    max-width: none;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+  }
+
+  .button,
+  .secondaryButton {
+    font-size: 1rem;
+    padding: 12px;
+    margin: 10px auto;
+    max-width: 100%;
+  }
+
+  .section,
+  .sectionReverse {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sectionImage {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .sectionContent {
+    text-align: center;
+    margin-top: 1em;
+  }
 }
