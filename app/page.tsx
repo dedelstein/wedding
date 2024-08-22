@@ -10,17 +10,17 @@ export default function Home() {
         <div className={styles.imageContainer}>
           <Image
             src={wedding_landing}
-            layout="responsive"
             alt="Wedding Landing Image"
+            layout="responsive"
             width={1509}
             height={2523}
             priority
           />
           <Link href="/rsvp" className={styles.rsvpButton} aria-label='RSVP' />
+          <Link href="/directions" className={styles.directionsButton} aria-label='Directions' />
+          <Link href="/schedule" className={styles.scheduleButton} aria-label='Schedule' />
+          <Link href="/stay" className={styles.stayButton} aria-label='Accommodations' />
         </div>
-        <Link href="/directions" className={styles.directionsButton} aria-label='Directions' />
-        <Link href="/schedule" className={styles.scheduleButton} aria-label='Schedule' />
-        <Link href="/stay" className={styles.stayButton} aria-label='Accommodations' />
       </div>
     </main>
   );
