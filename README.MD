@@ -1,1 +1,1 @@
-wedding website
+wedding website with next and supabase
