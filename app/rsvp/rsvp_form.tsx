@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import { rsvp } from '@/components/actions';
 import styles from './RSVPstyle.module.css'
@@ -15,14 +15,6 @@ export default function RSVPForm(user: any) {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const router = useRouter();
-
-    useEffect(() => {
-        // Disable body scrolling when the form is open
-        document.body.style.overflow = 'hidden';
-        return () => {
-            document.body.style.overflow = 'visible';
-        };
-    }, []);
 
     const handleAttendingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setIsAttending(e.target.value === 'yes');

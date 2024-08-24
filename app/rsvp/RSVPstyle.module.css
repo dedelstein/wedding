@@ -258,3 +258,11 @@
     height: 10px;
   }
 }
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: none; /* Ensure the form can expand to its full height */
+  overflow-y: visible; /* Allow vertical scrolling if needed */
+}
