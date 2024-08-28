@@ -1,19 +1,16 @@
-'use client';
-
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-
 import { rsvp } from '@/components/actions';
-import styles from './RSVPstyle.module.css'
-import { Manrope } from 'next/font/google'
+import styles from './RSVPstyle.module.css';
+import { Manrope } from 'next/font/google';
 
-const manrope = Manrope({ subsets: ['latin'] })
+const manrope = Manrope({ subsets: ['latin'] });
 
-export default function RSVPForm(user: any) {
+export default function RSVPForm() {
     const [isAttending, setIsAttending] = useState(false);
     const [hasPlusOne, setHasPlusOne] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+    const [errors, setErrors] = useState<Record<string, string[]>>({});
     const router = useRouter();
 
     const handleAttendingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,21 +24,31 @@ export default function RSVPForm(user: any) {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setIsSubmitting(true);
-        setError(null);
+        setErrors({});
 
-        try {
-            const formData = new FormData(event.currentTarget);
-            const ret: any = await rsvp(formData);
-            const id = ret.insertedId.toString([10]);
-            const redirectPath = ret.redirectPath;
-            localStorage.setItem('guestId', id);
-            router.push(redirectPath);
-        } catch (err) {
-            setError('An error occurred while submitting the form. Please try again.');
-            console.error('Form submission error:', err);
-        } finally {
-            setIsSubmitting(false);
+        const formData = new FormData(event.currentTarget);
+        
+        // Ensure plusOne is set correctly
+        if (!hasPlusOne) {
+            formData.set('plusOne', 'off');
         }
+
+        const response = await rsvp(formData);
+
+        if (response.success) {
+            localStorage.setItem('guestId', response.insertedId);
+            router.push(response.redirectPath);
+        } else {
+            if (response.errors) {
+                setErrors(response.errors);
+            } else if (response.error) {
+                setErrors({ general: [response.error] });
+            } else {
+                setErrors({ general: ['An unexpected error occurred'] });
+            }
+        }
+
+        setIsSubmitting(false);
     };
 
     return (
@@ -60,6 +67,7 @@ export default function RSVPForm(user: any) {
                                     value="yes"
                                     className={styles.radioInput}
                                     onChange={handleAttendingChange}
+                                    required
                                 />
                                 <span className={styles.radioButton}></span>
                                 Yes
@@ -71,6 +79,7 @@ export default function RSVPForm(user: any) {
                                     value="no"
                                     className={styles.radioInput}
                                     onChange={handleAttendingChange}
+                                    required
                                 />
                                 <span className={styles.radioButton}></span>
                                 No
@@ -116,6 +125,7 @@ export default function RSVPForm(user: any) {
                                         name="plusOne"
                                         className={styles.checkboxInput}
                                         onChange={handlePlusOneChange}
+                                        checked={hasPlusOne}
                                     />
                                     <span className={`${styles.checkbox} ${hasPlusOne ? styles.checkboxChecked : ''}`}></span>
                                     Request a plus one
@@ -146,11 +156,17 @@ export default function RSVPForm(user: any) {
                         </div>
                     )}
 
+                    {Object.entries(errors).map(([field, messages]) => (
+                        <div key={field} className={styles.error}>
+                            {messages.map((message, index) => (
+                                <p key={index}>{message}</p>
+                            ))}
+                        </div>
+                    ))}
+
                     <button type="submit" className={styles.button} disabled={isSubmitting}>
                         {isSubmitting ? 'Submitting...' : 'RSVP'}
                     </button>
-
-                    {error && <p className={styles.error}>{error}</p>}
                 </form>
             </div>
         </main>

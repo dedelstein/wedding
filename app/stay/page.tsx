@@ -68,7 +68,7 @@ export default function Stay() {
             TO RESERVE SPACE IN A YURT, PLEASE CLICK HERE
           </button>
           <button onClick={handleModifyBooking} className={styles.secondaryButton}>
-            Modify an Existing Yurt Reservation
+            Already RSVP'd or Change Existing Yurt Reservation
           </button>
         </div>
 

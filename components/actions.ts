@@ -3,6 +3,8 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
+import { z } from 'zod'
+
 
 
 export async function login() {
@@ -18,38 +20,64 @@ export async function login() {
   redirect('/rsvp')
 }
 
+const RSVPSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Invalid email address"),
+  attending: z.boolean(),
+  plusOne: z.boolean(),
+  plusOneName: z.string().optional().nullable(),
+  plusOneEmail: z.string().email("Invalid plus one email address").optional().nullable(),
+  specialRequests: z.string().optional().nullable(),
+  dietaryRestrictions: z.string().optional().nullable()
+})
 
-export async function rsvp(formData: FormData) {
+type RSVPData = z.infer<typeof RSVPSchema>
+
+type RSVPResponse = 
+  | { success: true; insertedId: string; redirectPath: string }
+  | { success: false; errors?: Record<string, string[]>; error?: string }
+
+export async function rsvp(formData: FormData): Promise<RSVPResponse> {
   const supabase = createClient()
 
-  const datum = {
-    name: formData.get('name') as string,
-    email: formData.get('email') as string,
-    attending: formData.get('attending') === 'yes' ? true : false,
-    plusOne: formData.get('plusOne') === 'on' ? true : false,
-    plusOneName: formData.get('plusOneName') as string,
-    plusOneEmail: formData.get('plusOneEmail') as string,
-    specialRequests: formData.get('specialRequests') as string,
-    dietaryRestrictions: formData.get('dietaryRestrictions') as string
+  const rawData = {
+    name: formData.get('name'),
+    email: formData.get('email'),
+    attending: formData.get('attending') === 'yes',
+    plusOne: formData.get('plusOne') === 'on',
+    plusOneName: formData.get('plusOneName') || null,
+    plusOneEmail: formData.get('plusOneEmail') || null,
+    specialRequests: formData.get('specialRequests') || null,
+    dietaryRestrictions: formData.get('dietaryRestrictions') || null
   }
 
-  const { data, error } = await supabase.from('guests').insert([datum]).select();
+  const result = RSVPSchema.safeParse(rawData)
 
-  if (error !== null) {
-    redirect('/error')
+  if (!result.success) {
+    return { success: false, errors: result.error.flatten().fieldErrors }
   }
 
-  revalidatePath('/', 'layout')
+  const validatedData: RSVPData = result.data
 
-  const insertedId = data[0]?.id;
-  let redirectPath = '/';
-  if (datum.attending) {
-    redirectPath = '/stay';
+  const { data, error } = await supabase
+    .from('guests')
+    .insert([validatedData])
+    .select()
+
+  if (error) {
+    return { success: false, error: 'Failed to save RSVP' }
   }
 
-  return { insertedId, redirectPath };
+  const insertedId = data[0]?.id
+
+  if (!insertedId) {
+    return { success: false, error: 'Failed to retrieve inserted ID' }
+  }
+
+  const redirectPath = validatedData.attending ? '/stay' : '/'
+
+  return { success: true, insertedId, redirectPath }
 }
-
 
 export async function booking(formData: FormData) {
   const supabase = createClient()

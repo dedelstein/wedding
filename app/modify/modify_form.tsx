@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export default function ModifyForm(user: any, guest_list: any) {
-
     const router = useRouter();
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -27,23 +26,27 @@ export default function ModifyForm(user: any, guest_list: any) {
     };
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-                <form onSubmit={handleSubmit}>
+        <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gray-50 dark:bg-gray-900">
+            <div className="w-full max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+                <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                         <input
                             type="email"
                             name="email"
                             placeholder="Your email address"
-                            className="block w-full px-3 py-2 mt-1 text-sm placeholder-gray-400 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-600"
+                            className="w-full px-3 py-2 text-gray-700 dark:text-gray-300 placeholder-gray-400 dark:placeholder-gray-600 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                             required
                         />
                     </div>
-                    <br />
-                    <button type="submit">Modify Booking</button>
+                    <button 
+                        type="submit"
+                        className="w-full bg-[#70868A] hover:bg-[#81A0AA] text-white font-semibold py-2 px-4 rounded-md transition-colors"
+                    >
+                        Go To Yurts
+                    </button>
                 </form>
                 {errorMessage && (
-                    <div className="alert alert-warning mt-4">
+                    <div className="mt-4 p-3 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 rounded-md">
                         {errorMessage}
                     </div>
                 )}
