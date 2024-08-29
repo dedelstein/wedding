@@ -190,3 +190,12 @@
     margin: 10px 0;
   }
 }
+  .yurtFullyOccupied {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .fullyOccupiedText {
+    color: red;
+    font-weight: bold;
+  }
