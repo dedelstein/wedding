@@ -89,11 +89,14 @@ export default function Stay() {
             <Image src={motel_dwg} alt='drawing of a motel' width={250} />
           </div>
           <div className={styles.sectionContent}>
-          <h2 className={styles.subtitle}>Hotel Rooms</h2>
-          <p className={styles.paragraph}>
+            <h2 className={styles.subtitle}>Hotel Rooms</h2>
+            <p className={styles.paragraph}>
               We've arranged discounted rates at a <a href='https://www.wyndhamhotels.com/days-inn/ridgefield-connecticut/days-inn-ridgefield/rooms-rates?hotel_id=15399&checkin_date=10/04/2024&checkout_date=10/06/2024&adults=2&children=0&rooms=1&brand_id=DI&iata=00094113&cid=ME:xd7zjkwytcqqzs6:15399' className={styles.link}>nearby hotel</a> for those who prefer it. You can just call up +1 (203) 438-3781 and tell them you're getting a room for Dan and Zody's wedding. They are a ~15 min drive away, but we won't be able get you to/from the venue. We will set up a groupchat for carpooling.
+              <br /><br/>There are two local taxi companies: <br />
+              Brewster Taxi +1 914 885-3666 <br />
+              Orbes Taxi +1 845 278-7200
             </p>
-            </div>
+          </div>
         </div>
 
         <div className={styles.section}>
@@ -108,9 +111,9 @@ export default function Stay() {
             </p>
           </div>
         </div>
-          <Link href={'/'} className={styles.link}>
-            Back
-          </Link>
+        <Link href={'/'} className={styles.link}>
+          Back
+        </Link>
       </div>
       <CustomPopup
         isOpen={isPopupOpen}

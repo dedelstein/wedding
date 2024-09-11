@@ -18,6 +18,12 @@ export default function Directions() {
         </div>
         <h2 className={styles.subtitle}>How to reach us:</h2>
         <ul className={styles.list}>
+          <li>By taxi:<br />
+            There are two local taxi companies: <br/>
+            Brewster Taxi +1 914 885-3666 <br/>
+            Orbes Taxi +1 845 278-7200
+          </li>
+
           <li>By public transport:<br />
             <a href="https://new.mta.info/schedules" className={styles.link}>The Metro North</a> Harlem line runs from Grand Central to Purdy's, roughly every 30 minutes on Weekdays and every hour on Weekends.
             Fares are approx. $20 for peak hours (leaving from 6-9 AM or 4-8 PM) and $15 one-way for off-peak hours, with reduced fares for those who qualify.
