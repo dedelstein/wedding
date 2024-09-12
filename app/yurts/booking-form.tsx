@@ -112,7 +112,7 @@ export default function BookingForm({ user, yurt_list }: BookingFormProps) {
       formData.set('extra_names', formData.get('extra_names') ?? '');
 
       const returnPath = await booking(formData);
-      /*window.location.href = returnPath;*/
+      window.location.href = returnPath;
     }
   };
 
