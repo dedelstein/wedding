@@ -17,7 +17,6 @@ interface BookingWithGuestName {
   extra_names: string;
 }
 
-
 interface Yurt {
   id: number;
   name: string;
@@ -31,12 +30,10 @@ interface BookingFormProps {
 }
 
 export default function BookingForm({ user, yurt_list }: BookingFormProps) {
-
   const router = useRouter();
 
   const [guestId, setGuestId] = useState<number | null>(null);
   const [stayDuration, setStayDuration] = useState<1 | 2 | null>(null);
-  const [selectedYurtIndex, setSelectedYurtIndex] = useState<number | null>(null);
   const [selectedYurtId, setSelectedYurtId] = useState<number | null>(null);
   const [selectedYurtName, setSelectedYurtName] = useState<string | null>(null);
   const [selectedColumn, setSelectedColumn] = useState<4 | 5 | null>(null);
@@ -85,7 +82,7 @@ export default function BookingForm({ user, yurt_list }: BookingFormProps) {
       handleDurationPopup();
       return;
     }
-    if (selectedYurtIndex === null) {
+    if (selectedYurtId === null) {
       alert('Please select a yurt');
       return;
     }
@@ -115,7 +112,7 @@ export default function BookingForm({ user, yurt_list }: BookingFormProps) {
       formData.set('extra_names', formData.get('extra_names') ?? '');
 
       const returnPath = await booking(formData);
-      window.location.href = returnPath;
+      /*window.location.href = returnPath;*/
     }
   };
 
@@ -127,8 +124,8 @@ export default function BookingForm({ user, yurt_list }: BookingFormProps) {
     setShowPopup(false);
   }, []);
 
-  const handleYurtClick = useCallback((index: number, column: 4 | 5) => {
-    const yurt = yurt_list.find(yurt => yurt.id === index + 1);
+  const handleYurtClick = useCallback((yurtId: number, column: 4 | 5) => {
+    const yurt = yurt_list.find(yurt => yurt.id === yurtId);
     if (stayDuration === null) {
       handleDurationPopup();
     } else if (yurt === undefined) {
@@ -142,8 +139,7 @@ export default function BookingForm({ user, yurt_list }: BookingFormProps) {
         return;
       }
 
-      setSelectedYurtIndex(index);
-      setSelectedYurtId(index + 1);
+      setSelectedYurtId(yurtId);
       setSelectedColumn(column);
       setSelectedYurtName(yurt.name);
     }
@@ -151,7 +147,7 @@ export default function BookingForm({ user, yurt_list }: BookingFormProps) {
 
   const handleDurationClick = useCallback((duration: 1 | 2) => {
     setStayDuration(duration);
-    setSelectedYurtIndex(null); // Reset the selected yurt when switching duration
+    setSelectedYurtId(null); // Reset the selected yurt when switching duration
     setSelectedColumn(null);
     closePopup(); // Close the popup after selecting duration
   }, [closePopup]);
@@ -189,14 +185,12 @@ export default function BookingForm({ user, yurt_list }: BookingFormProps) {
       .join(', ');
   };
 
-  
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Yurt Booking</h1>
 
       {sortedBookings.filter((booking) => booking.guest_id === guestId).length > 0 && (
         <div>
-          
           <h2 className={styles.subtitle}>Your Bookings: </h2>
           <ul className={styles.list}>
             {sortedBookings
@@ -243,13 +237,13 @@ export default function BookingForm({ user, yurt_list }: BookingFormProps) {
       <div className={styles.yurtsContainer}>
         <div className={styles.column}>
           <h3 className={styles.subtitle}>Friday</h3>
-          {sortedYurtList.slice(0, 10).map((yurt, index) => (
+          {sortedYurtList.map((yurt) => (
             <div
               key={yurt.id}
-              onClick={() => yurt.num_using_fri < 10 ? handleYurtClick(index, 4) : null}
+              onClick={() => yurt.num_using_fri < 10 ? handleYurtClick(yurt.id, 4) : null}
               className={`${styles.yurt} 
-                ${(stayDuration === 1 && selectedColumn === 4 && selectedYurtIndex === index) ||
-                  (stayDuration === 2 && selectedYurtIndex === index)
+                ${(stayDuration === 1 && selectedColumn === 4 && selectedYurtId === yurt.id) ||
+                  (stayDuration === 2 && selectedYurtId === yurt.id)
                   ? styles.yurtSelected
                   : ''}
                 ${yurt.num_using_fri >= 10 ? styles.yurtFullyOccupied : ''}`}
@@ -263,13 +257,13 @@ export default function BookingForm({ user, yurt_list }: BookingFormProps) {
         </div>
         <div className={styles.column}>
           <h3 className={styles.subtitle}>Saturday</h3>
-          {sortedYurtList.slice(0, 10).map((yurt, index) => (
+          {sortedYurtList.map((yurt) => (
             <div
               key={yurt.id}
-              onClick={() => yurt.num_using_sat < 10 ? handleYurtClick(index, 5) : null}
+              onClick={() => yurt.num_using_sat < 10 ? handleYurtClick(yurt.id, 5) : null}
               className={`${styles.yurt} 
-                ${(stayDuration === 1 && selectedColumn === 5 && selectedYurtIndex === index) ||
-                  (stayDuration === 2 && selectedYurtIndex === index)
+                ${(stayDuration === 1 && selectedColumn === 5 && selectedYurtId === yurt.id) ||
+                  (stayDuration === 2 && selectedYurtId === yurt.id)
                   ? styles.yurtSelected
                   : ''}
                 ${yurt.num_using_sat >= 10 ? styles.yurtFullyOccupied : ''}`}
